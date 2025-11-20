@@ -1,0 +1,83 @@
+:root {
+    /* Define variáveis de cor para fácil alteração */
+    --color-primary: #ff0037; /* Vermelho escuro/amaldiçoado */
+    --color-secondary: #fffaee; /* Branco Suave */
+    --color-dark: #1a1a1a; /* Quase Preto */
+}
+
+body {
+    background: #000;
+    background-size: cover; /* Faz a imagem cobrir toda a tela */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição */
+    background-attachment: fixed; /* Opcional: mantém o fundo fixo ao rolar */
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ocupa a altura total da janela de visualização */
+    margin: 0;
+    font-family: sans-serif; /* Fonte padrão, escolha uma mais estilizada se quiser */
+    color: var(--color-secondary);
+}
+
+/* Container do Logo e Imagem do Logo */
+.logo-container {
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); 
+}
+
+.game-logo {
+    width: 100%;
+    max-width: 450px; /* Limite o tamanho do logo */
+    height: auto;
+}
+
+/* Caixa de Seleção/Botão */
+#initial-start-screen {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.selection-box {
+    width: 60%;
+    min-width: 350px;
+    max-width: 450px; /* Limita o tamanho máximo da caixa do botão */
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente para o botão se destacar */
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid var(--color-primary); /* Borda com a cor primária */
+    box-shadow: 0 0 20px rgba(163, 0, 0, 0.5); /* Sombra para destacar a caixa */
+}
+
+/* Estilo do Botão */
+.mode-button {
+    display: block;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-secondary);
+    background-color: var(--color-primary); /* Cor de fundo do botão */
+    border: 1px solid var(--color-secondary);
+    border-radius: 5px;
+    font-size: 1.5em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+}
+
+.mode-button:hover {
+    background-color: var(--color-primary); /* Um vermelho um pouco mais claro ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de elevação sutil */
+    box-shadow: 0 7px 20px rgba(163, 0, 0, 0.7);
+}
+
+.mode-button:active {
+    transform: translateY(0);
+    background-color: #8c0000; /* Cor mais escura ao clicar */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
