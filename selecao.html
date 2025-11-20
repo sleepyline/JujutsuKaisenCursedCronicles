@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jujutsu Kaisen: Seleção</title>
+    <link rel="stylesheet" href="/css/escolha.css">
+    <link rel="shortcut icon" href="/JujutsuCursed.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <div class="logo-container">
+        <img src="/JujutsuCursed.png" alt="Jujutsu Kaisen: Cursed Cronnicles Logo" class="game-logo">
+    </div>
+
+    <div id="selection-container" class="character-select-screen">
+
+        <div class="player-area left-player">
+            <div id="player-char-image" class="character-image person-img"></div>
+            <div class="character-name-box">
+                <p id="player-char-name" class="name">Selecione Jogador</p>
+                <p id="player-char-subname" class="sub-name"></p>
+            </div>
+        </div>
+
+        <div class="selection-grid-container">
+            <div class="grid-header">
+                <p id="current-selector-text">Escolha o Personagem</p>
+            </div>
+            <div class="character-grid" id="character-grid">
+                <div class="char-icon" data-char-key="satoru" onclick="handleCharacterSelection('satoru')">
+                    <img src="https://criticalhits.com.br/wp-content/uploads/2025/03/Gojo.jpg">
+                </div>
+
+                <div class="char-icon" data-char-key="sukuna" onclick="handleCharacterSelection('sukuna')">
+                    <img src="https://tm.ibxk.com.br/2023/11/14/14093517191519.jpg?ims=1200x1200">
+                </div>
+
+                <div class="char-icon" data-char-key="megumi" onclick="handleCharacterSelection('megumi')">
+                    <img
+                        src="https://static.beebom.com/wp-content/uploads/2025/10/jujutsu-kaisen-megumi-fushiguro.jpg?w=1168&quality=75">
+                </div>
+
+                <div class="char-icon" data-char-key="toji" onclick="handleCharacterSelection('toji')">
+                    <img
+                        src="https://preview.redd.it/toji-fushiguro-the-one-character-unaffected-by-this-ending-v0-u5nwh1b4p5rd1.jpeg?width=640&crop=smart&auto=webp&s=fd078aa4baeb1344a962e9b72e834af9cd0d1287">
+                </div>
+
+                <div class="char-icon" data-char-key="itadori" onclick="handleCharacterSelection('itadori')">
+                    <img src="https://criticalhits.com.br/wp-content/uploads/2021/06/Yuji.jpg">
+                </div>
+
+                <div class="char-icon" data-char-key="yuta" onclick="handleCharacterSelection('yuta')">
+                    <img src="https://ovicio.com.br/wp-content/uploads/2023/12/20231229-jujutsu-kaisen-yuta.jpg">
+                </div>
+
+                <div class="char-icon" data-char-key="nobara" onclick="handleCharacterSelection('nobara')">
+                    <img src="https://criticalhits.com.br/wp-content/uploads/2023/11/nobara1-1-1280x720.jpg">
+                </div>
+
+                <div class="char-icon" data-char-key="geto" onclick="handleCharacterSelection('geto')">
+                    <img src="https://criticalhits.com.br/wp-content/uploads/2023/10/Suguru-Geto-1280x640.jpg">
+                </div>
+
+                <div class="char-icon" data-char-key="choso" onclick="handleCharacterSelection('choso')">
+                    <img
+                        src="https://criticalhits.com.br/wp-content/uploads/2023/10/choso_1693393930019_169339394537.jpg">
+                </div>
+
+                <div class="char-icon" data-char-key="mahito" onclick="handleCharacterSelection('mahito')">
+                    <img src="https://criticalhits.com.br/wp-content/uploads/2024/01/mahito-episode-42-1280x640.webp">
+                </div>
+
+                <div class="char-icon" data-char-key="nanami" onclick="handleCharacterSelection('nanami')">
+                    <img src="https://criticalhits.com.br/wp-content/uploads/2021/06/nanami-jujutsu-1-1200x675-1.jpg">
+                </div>
+            </div>
+
+            <div class="grid-controls">
+                <button id="voltar" onclick="goBack()">Retornar</button>
+                <button id="confirm-button" onclick="confirmSelection()" disabled>Confirmar</button>
+            </div>
+        </div>
+
+        <div class="player-area right-player">
+            <div id="npc-char-image" class="character-image inimigo-img"></div>
+            <div class="character-name-box">
+                <p id="npc-char-name" class="name">Selecione Inimigo</p>
+                <p id="npc-char-subname" class="sub-name"></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="/scripts/Caracteres.js"></script>
+<script src="/scripts/script.js"></script>
+
+
+</html>

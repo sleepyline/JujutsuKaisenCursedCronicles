@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jujutsu Kaisen: Modos</title>
+    <link rel="shortcut icon" href="/JujutsuCursed.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.css"> 
+    </head>
+<body>
+    <div class="logo-container">
+        <img src="/JujutsuCursed.png" alt="Jujutsu Kaisen: Cursed Cronnicles Logo" class="game-logo">
+    </div>
+
+    <div id="mode-selection-container" style="display:flex; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
+        <div class="selection-box" style="width: 60%; min-width: 350px; background: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px;">
+            <h2>Selecione Modo de Jogo</h2>
+            <button class="mode-button" style="display: block; width: 100%; margin: 10px 0; padding: 15px; font-size: 1.1em; cursor: pointer; background-color: rgb(20, 20, 20); color: white; border: none; border-radius: 5px;">Modo Culling (Jogo do Abate)</button>
+            <button class="mode-button" onclick="selectGameMode('battle')" style="display: block; width: 100%; margin: 10px 0; padding: 15px; font-size: 1.1em; cursor: pointer; background-color: rgb(0, 174, 255); color: white; border: none; border-radius: 5px;">Modo Battle (Combate Livre)</button>
+        </div>
+    </div>
+
+    <script>
+        // Função para selecionar o modo e ir para a tela de seleção de personagem
+        function selectGameMode(mode) {
+            // Redireciona para a tela de seleção de personagem, passando o modo como parâmetro
+            window.location.href = 'selecao.html?mode=' + mode;
+        }
+    </script>
+</body>
+</html>

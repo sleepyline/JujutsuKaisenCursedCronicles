@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jujutsu Kaisen: Cursed Cronnicles</title>
+    <link rel="shortcut icon" href="/JujutsuCursed.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div id="alert-message"></div>
+
+    <div id="battle-background">
+
+        <div class="logo-container">
+            <img src="/JujutsuCursed.png" alt="Jujutsu Kaisen: Cursed Cronnicles Logo" class="game-logo">
+        </div>
+
+        <div id="game-container" style="display:flex;">
+            <div id="message-feed">
+                <ul id="messages">
+                </ul>
+            </div>
+
+            <div id="status-container">
+
+                <div class="player-area">
+                    <div class="name-header">
+                        <div id="player-icon-small" class="char-icon-small"></div>
+                        <h2><span id="player-name"></span></h2>
+                    </div>
+
+                    <div class="status-bar-group">
+                        <img src="/Icones/Life.png" alt="Vida" class="status-icon">
+                        <div class="status-bar hp">
+                            <div id="player-hp-bar" class="bar-fill"></div>
+                        </div>
+                        <span id="player-hp"></span>
+                    </div>
+
+                    <div class="status-bar-group">
+                        <img src="/Icones/Energia amaldiçoada.png" alt="Energia Amaldiçoada" class="status-icon">
+                        <div class="status-bar ce">
+                            <div id="player-ce-bar" class="bar-fill"></div>
+                        </div>
+                        <span id="player-ce"></span>
+                    </div>
+
+                    <div class="status-bar-group">
+                        <img src="/Icones/Energia Reversa.png" alt="Reversão" class="status-icon">
+                        <div class="status-bar rev">
+                            <div id="player-rev-bar" class="bar-fill"></div>
+                        </div>
+                        <span id="player-rev"></span>
+                    </div>
+
+                    <div id="player-abilities" class="abilities-grid">
+                    </div>
+                </div>
+
+                <div class="npc-area">
+                    <div class="name-header">
+                        <div id="npc-icon-small" class="char-icon-small"></div>
+                        <h2><span id="npc-name"></span></h2>
+                    </div>
+                    <div class="status-bar-group">
+                        <img src="/Icones/Life.png" alt="Vida" class="status-icon">
+                        <div class="status-bar hp">
+                            <div id="npc-hp-bar" class="bar-fill"></div>
+                        </div>
+                        <span id="npc-hp"></span>
+                    </div>
+
+                    <div class="status-bar-group">
+                        <img src="/Icones/Energia amaldiçoada.png" alt="Energia Amaldiçoada" class="status-icon">
+                        <div class="status-bar ce">
+                            <div id="npc-ce-bar" class="bar-fill"></div>
+                        </div>
+                        <span id="npc-ce"></span>
+                    </div>
+
+                    <div class="status-bar-group">
+                        <img src="/Icones/Energia Reversa.png" alt="Reversão" class="status-icon">
+                        <div class="status-bar rev">
+                            <div id="npc-rev-bar" class="bar-fill"></div>
+                        </div>
+                        <span id="npc-rev"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> <script src="/scripts/Caracteres.js"></script>
+<script src="/scripts/script.js"></script>
+
+</body>
+
+</html>

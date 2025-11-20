@@ -1,0 +1,407 @@
+body {
+    background-color: #0f0f0f;
+    font-family: Arial, sans-serif;
+    color: white;
+    margin: 20px;
+    overflow: hidden;
+}
+
+h1 {
+    text-align: center;
+    color: #FF0055; /* Cor tema Jujutsu */
+}
+
+/* --- LOGO --- */
+.logo-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.game-logo {
+    /* Tamanho padrão do logo, que será usado após a tela inicial */
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: max-width 0.5s ease-in-out;
+    /* Adiciona transição suave */
+}
+
+
+/* --- ALERTA VISUAL --- */
+#alert-message {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    font-size: 3em;
+    font-weight: bold;
+    color: #FF0000;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px 40px;
+    border: 5px solid #FFD700;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+    text-align: center;
+}
+
+/* --- TELAS DE SELEÇÃO (Início, Modo, Personagem) --- */
+#initial-start-screen,
+#selection-container,
+#mode-selection-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.selection-box {
+    border: 2px solid #555;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #2a2a2a;
+    width: 40%;
+    min-width: 300px;
+    text-align: center;
+}
+
+.selection-box button,
+.mode-button {
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    border: 1px solid #ff0055;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+/* Estilo específico para os botões de modo */
+.mode-button {
+    font-size: 1.1em;
+    padding: 15px 25px;
+    display: block;
+    width: 80%;
+    margin: 15px auto;
+}
+
+/* NOVO: Estilo para o botão "INICIAR JOGO" na tela inicial */
+.large-button {
+    font-size: 1.5em !important;
+    padding: 20px 40px !important;
+    background-color: #ff0055 !important;
+    color: #ffffff !important;
+    border: 3px solid #1e1e1e !important;
+    font-weight: bold;
+    box-shadow: 0 0 10px #ff72a1;
+}
+
+#start-game-button {
+    width: 90%;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 1.2em;
+    background-color: #FFD700;
+    color: #1e1e1e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#start-game-button:disabled {
+    background-color: #777;
+    cursor: not-allowed;
+}
+
+#npc-radio-buttons label {
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+/* --- COMBATE LAYOUT --- */
+#game-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 90%;
+    max-width: 1500px; /* Limite a largura para melhor leitura */
+    margin: 10px auto;
+    padding: 10px;
+    background-color: rgba(15, 15, 15, 0.85); /* Fundo semi-transparente para o conteúdo */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+#status-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    perspective: 1000px;
+}
+
+.player-area,
+.npc-area {
+    width: 50%;
+    border: 2px solid #555;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #1f1f1f;
+}
+
+.player-area:hover,
+.npc-area:hover {
+    transform: translateY(-5px);
+}
+
+/* --- FEED DE BATALHA (Personalizado) --- */
+
+#message-feed {
+    width: 96%;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 3px solid #FFD700;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4), inset 0 0 5px rgba(255, 215, 0, 0.2);
+    max-height: 150px;
+}
+
+#messages {
+    list-style: none;
+    padding: 0;
+    max-height: 120px; /* Ajustado para caber na nova caixa */
+    overflow-y: auto;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 1.05em;
+    scrollbar-color: #FFD700 #2a2a2a; /* Customiza a barra de rolagem (Firefox) */
+    scrollbar-width: thin;
+}
+
+/* Webkit (Chrome, Safari) Scrollbar */
+#messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+#messages::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+#messages::-webkit-scrollbar-thumb {
+    background-color: #FFD700;
+    border-radius: 20px;
+}
+
+#messages li {
+    padding: 6px 0;
+    border-bottom: 1px dashed #333;
+    color: #c0c0c0;
+    animation: fadeIn 0.4s ease-out;
+    text-align: left; /* Alinhamento à esquerda para melhor leitura */
+}
+
+/* REGRA QUE GARANTE O DESTAQUE */
+#messages li .highlight {
+    color: #FFD700;
+    /* Amarelo Dourado */
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    /* Efeito de brilho opcional */
+}
+
+/* Estilo para destacar o acerto crítico */
+#messages .critical {
+    font-weight: bold;
+    color: #FF6347;
+    background-color: rgba(139, 0, 0, 0.2);
+    padding: 2px 0;
+}
+
+/* Estilo para destacar a vitória/derrota */
+#messages .game-over {
+    font-size: 1.3em;
+    color: #FFD700;
+    background-color: rgba(255, 215, 0, 0.1);
+    border-top: 2px solid #FFD700;
+    border-bottom: 2px solid #FFD700;
+    padding: 10px 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- ESTILIZAÇÃO DAS BARRAS DE STATUS --- */
+
+.status-bar-group {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    background-color: rgba(50, 50, 50, 0.5); /* Fundo sutil para o grupo */
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+.status-icon {
+    width: 28px; /* Ícones um pouco maiores */
+    height: 28px;
+    margin-right: 12px;
+    filter: drop-shadow(0 0 3px #000); /* Sombra nos ícones para destaque */
+}
+
+.status-bar {
+    flex-grow: 1;
+    height: 18px; /* Barras um pouco mais altas */
+    background-color: #1a1a1a;
+    border: 2px solid #555;
+    border-radius: 10px; /* Bordas mais arredondadas */
+    overflow: hidden;
+    margin-right: 10px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.bar-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+    border-radius: 8px; /* Arredondamento dentro da barra */
+}
+
+.status-bar.hp .bar-fill {
+    background: linear-gradient(90deg, #8B0000, #FF6347);
+}
+
+.status-bar.ce .bar-fill {
+    background: linear-gradient(90deg, #1E90FF, #00BFFF);
+}
+
+.status-bar.rev .bar-fill {
+    background: linear-gradient(90deg, #3CB371, #98FB98);
+}
+
+.status-bar-group span {
+    width: 40px;
+    text-align: right;
+    font-weight: bold;
+}
+
+/* Cores dos textos de status */
+.status-bar-group span#player-hp,
+.status-bar-group span#npc-hp {
+    color: #FF6347;
+}
+
+.status-bar-group span#player-ce,
+.status-bar-group span#npc-ce {
+    color: #00BFFF;
+}
+
+.status-bar-group span#player-rev,
+.status-bar-group span#npc-rev {
+    color: #98FB98;
+}
+
+
+/* --- HABILIDADES --- */
+
+.abilities-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px; /* Espaçamento maior */
+    margin-top: 20px;
+}
+
+.ability-cost {
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
+    font-size: 0.7em; /* Menor */
+    font-weight: 700;
+    color: #ffcc00; /* Destaque */
+    background: rgba(0, 0, 0, 0.6);
+    padding: 1px 4px;
+    border-radius: 3px;
+    line-height: 1;
+}
+
+.abilities-grid button {
+    padding: 10px;
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-weight: bold; 
+}
+
+
+.abilities-grid button.domain-ability {
+    background-color: #ff0055;
+    border: 2px solid #000000;
+    order: -2;
+}
+
+.abilities-grid button.maximum-ability {
+    background-color: #000000; 
+    border: 2px solid #c9c9c9;
+    order: -1; 
+}
+
+.abilities-grid button.heal-ability {
+    background-color: #90EE90; 
+    color: black;
+    border: 2px solid #3CB371;
+}
+
+.abilities-grid button:disabled {
+    background-color: #777;
+    cursor: not-allowed;
+    color: #aaa;
+}
+
+/* Estilo para alinhar o ícone e o nome */
+.name-header {
+    display: flex;
+    align-items: center;
+    /* Alinha verticalmente o ícone e o h2 */
+    gap: 10px;
+    /* Espaço entre o ícone e o nome */
+    margin-bottom: 5px;
+}
+
+/* Estilo para o ícone pequeno do personagem */
+.char-icon-small {
+    width: 35px;
+    /* Tamanho do ícone */
+    height: 35px;
+    /* Tamanho do ícone */
+    border-radius: 5px;
+    /* Bordas levemente arredondadas */
+    background-size: cover;
+    background-size: cover;
+    background-position: center;
+    background-color: #555;
+    /* Cor de fundo padrão */
+    flex-shrink: 0;
+    /* Impede que o ícone encolha */
+}
+
+/* Ajuste para o <h2> dentro do name-header para garantir que o texto não se quebre estranhamente */
+.name-header h2 {
+    margin: 0;
+    line-height: 1;
+    /* Garante que a linha se alinhe ao ícone */
+}

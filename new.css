@@ -1,0 +1,274 @@
+body {
+    background-color: #0f0f0f;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte um pouco mais moderna */
+    color: white;
+    margin: 0; /* Remove margem padrão */
+    overflow-x: hidden;
+}
+
+/* NOVO: Fundo da Tela de Batalha */
+#battle-background {
+    /* Imagem de Fundo (Ajuste o caminho se necessário) */
+    background-image: url('/Imagens/fundo-batalha-jujutsu.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Opcional: faz o fundo ser fixo */
+    min-height: 100vh;
+    padding-top: 20px;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.7); /* Efeito de sombra interna para escurecer o fundo */
+}
+
+h1 {
+    text-align: center;
+    color: #FF0055; /* Cor tema Jujutsu */
+}
+
+/* --- LOGO --- */
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.game-logo {
+    max-width: 150px; /* Logo menor e mais discreto durante a batalha */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: max-width 0.5s ease-in-out;
+    filter: drop-shadow(0 0 5px rgba(255, 0, 85, 0.8)); /* Brilho no logo */
+}
+
+/* O resto do CSS de ALERTA E SELEÇÃO permanece o mesmo */
+/* ... */
+
+/* --- COMBATE LAYOUT --- */
+#game-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 90%;
+    max-width: 1200px; /* Limite a largura para melhor leitura */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(15, 15, 15, 0.85); /* Fundo semi-transparente para o conteúdo */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+#status-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    /* Adiciona um efeito de profundidade na área de status */
+    perspective: 1000px;
+}
+
+.player-area,
+.npc-area {
+    width: 50%;
+    /* Estilo para painéis mais futuristas/amaldiçoados */
+    border: 3px solid #FF0055; /* Borda cor tema */
+    border-radius: 12px;
+    padding: 20px;
+    background-color: rgba(30, 30, 30, 0.95);
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efeito sutil de elevação ao passar o mouse */
+.player-area:hover,
+.npc-area:hover {
+    transform: translateY(-5px);
+}
+
+
+/* --- FEED DE BATALHA (Melhorado) --- */
+#message-feed {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 3px solid #FFD700;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4), inset 0 0 5px rgba(255, 215, 0, 0.2);
+    /* Fundo mais discreto e caixa menor */
+    max-height: 150px;
+}
+
+#messages {
+    list-style: none;
+    padding: 0;
+    max-height: 120px; /* Ajustado para caber na nova caixa */
+    overflow-y: auto;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 1.05em;
+    scrollbar-color: #FFD700 #2a2a2a; /* Customiza a barra de rolagem (Firefox) */
+    scrollbar-width: thin;
+}
+
+/* Webkit (Chrome, Safari) Scrollbar */
+#messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+#messages::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+#messages::-webkit-scrollbar-thumb {
+    background-color: #FFD700;
+    border-radius: 20px;
+}
+
+#messages li {
+    padding: 6px 0;
+    border-bottom: 1px dashed #333;
+    color: #c0c0c0;
+    animation: fadeIn 0.4s ease-out;
+    text-align: left; /* Alinhamento à esquerda para melhor leitura */
+}
+/* O resto do CSS do FEED DE BATALHA permanece o mesmo */
+/* ... */
+
+/* --- BARRAS DE STATUS (Melhorado) --- */
+
+.status-bar-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    background-color: rgba(50, 50, 50, 0.5); /* Fundo sutil para o grupo */
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+.status-icon {
+    width: 28px; /* Ícones um pouco maiores */
+    height: 28px;
+    margin-right: 12px;
+    filter: drop-shadow(0 0 3px #000); /* Sombra nos ícones para destaque */
+}
+
+.status-bar {
+    flex-grow: 1;
+    height: 18px; /* Barras um pouco mais altas */
+    background-color: #1a1a1a;
+    border: 2px solid #555;
+    border-radius: 10px; /* Bordas mais arredondadas */
+    overflow: hidden;
+    margin-right: 10px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.bar-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+    border-radius: 8px; /* Arredondamento dentro da barra */
+}
+
+/* Cores de preenchimento das barras com gradiente */
+.status-bar.hp .bar-fill {
+    background: linear-gradient(90deg, #8B0000, #FF6347);
+}
+
+.status-bar.ce .bar-fill {
+    background: linear-gradient(90deg, #1E90FF, #00BFFF);
+}
+
+.status-bar.rev .bar-fill {
+    background: linear-gradient(90deg, #3CB371, #98FB98);
+}
+
+/* --- HABILIDADES (A MAIOR MUDANÇA) --- */
+
+.abilities-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px; /* Espaçamento maior */
+    margin-top: 20px;
+}
+
+.abilities-grid button {
+    position: relative; /* Para posicionar o custo */
+    padding: 15px 10px; /* Padding ajustado */
+    min-height: 60px;
+    color: white;
+    border: none;
+    border-radius: 8px; /* Botões arredondados */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* ESTILO DO CUSTO (ex: 80 CE) */
+.ability-cost {
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
+    font-size: 0.7em; /* Menor */
+    font-weight: 700;
+    color: #ffcc00; /* Destaque */
+    background: rgba(0, 0, 0, 0.6);
+    padding: 1px 4px;
+    border-radius: 3px;
+    line-height: 1;
+}
+
+.abilities-grid button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    filter: brightness(1.1);
+}
+
+.abilities-grid button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos de Cores com Gradiente para cada tipo de habilidade */
+
+.abilities-grid button:not(.domain-ability):not(.maximum-ability):not(.heal-ability) {
+    /* Habilidades Padrão */
+    background: linear-gradient(145deg, #3CB371, #4CAF50);
+    border: 2px solid #2e8b57;
+}
+
+.abilities-grid button.domain-ability {
+    /* Expansão de Domínio */
+    background: linear-gradient(145deg, #AA0044, #FF0055);
+    border: 3px solid #8B0000;
+    order: -2;
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.8); /* Brilho Intenso */
+}
+
+.abilities-grid button.maximum-ability {
+    /* Técnica Máxima */
+    background: linear-gradient(145deg, #1e1e1e, #000000);
+    border: 3px solid #c9c9c9;
+    order: -1;
+}
+
+.abilities-grid button.heal-ability {
+    /* Técnica de Reversão */
+    background: linear-gradient(145deg, #98FB98, #60D394);
+    color: #1e1e1e;
+    text-shadow: none;
+    border: 2px solid #3CB371;
+}
+
+.abilities-grid button:disabled {
+    background: #444 !important;
+    border: 1px solid #333 !important;
+    cursor: not-allowed;
+    color: #aaa;
+    transform: none;
+    box-shadow: none;
+}
+/* O resto do CSS de HABILIDADES e NOME-HEADER permanece o mesmo */
+/* ... */
