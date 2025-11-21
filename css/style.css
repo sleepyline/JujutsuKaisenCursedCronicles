@@ -8,7 +8,8 @@ body {
 
 h1 {
     text-align: center;
-    color: #FF0055; /* Cor tema Jujutsu */
+    color: #FF0055;
+    /* Cor tema Jujutsu */
 }
 
 /* --- LOGO --- */
@@ -26,7 +27,6 @@ h1 {
     transition: max-width 0.5s ease-in-out;
     /* Adiciona transição suave */
 }
-
 
 /* --- ALERTA VISUAL --- */
 #alert-message {
@@ -124,34 +124,30 @@ h1 {
     font-size: 14px;
 }
 
-/* --- COMBATE LAYOUT --- */
+#battle-background{
+    padding-inline: 40px;
+}
+
 #game-container {
     display: flex;
-    flex-direction: column;
-    gap: 25px;
-    width: 90%;
-    max-width: 1500px; /* Limite a largura para melhor leitura */
-    margin: 10px auto;
-    padding: 10px;
-    background-color: rgba(15, 15, 15, 0.85); /* Fundo semi-transparente para o conteúdo */
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    flex-direction: column; /* Organiza os itens (status-container, feed, abilities) em uma coluna */
+    align-items: center; /* Centraliza os elementos */
+    width: 100%;
+    margin: 0 auto; /* Centraliza o container principal na página */
 }
 
 #status-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    perspective: 1000px;
+    display: flex; 
+    justify-content: space-around; /* Distribui o espaço entre os dois painéis */
+    gap: 30px; /* Mantém o gap entre Player e NPC */
+    width: 100%;
+
 }
 
 .player-area,
 .npc-area {
-    width: 50%;
-    border: 2px solid #555;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #1f1f1f;
+  width: 45%; /* Garante que ocupe uma boa parte do status-container */
+    min-width: 10px; /* Impede que fiquem muito pequenos */
 }
 
 .player-area:hover,
@@ -159,30 +155,30 @@ h1 {
     transform: translateY(-5px);
 }
 
-/* --- FEED DE BATALHA (Personalizado) --- */
 
 #message-feed {
-    width: 96%;
+    width: 200%; 
+    max-width: 1000px; 
+    height: 310px; 
     background-color: rgba(0, 0, 0, 0.9);
     border: 3px solid #FFD700;
     padding: 15px 20px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(255, 215, 0, 0.4), inset 0 0 5px rgba(255, 215, 0, 0.2);
-    max-height: 150px;
+    margin-bottom: 30px; 
 }
 
 #messages {
     list-style: none;
     padding: 0;
-    max-height: 120px; /* Ajustado para caber na nova caixa */
-    overflow-y: auto;
+    height: 280px; 
+    overflow-y: auto; 
     font-family: 'Consolas', 'Courier New', monospace;
-    font-size: 1.05em;
-    scrollbar-color: #FFD700 #2a2a2a; /* Customiza a barra de rolagem (Firefox) */
+    font-size: 1.1em; 
+    scrollbar-color: #FFD700 #2a2a2a; 
     scrollbar-width: thin;
 }
 
-/* Webkit (Chrome, Safari) Scrollbar */
 #messages::-webkit-scrollbar {
     width: 8px;
 }
@@ -201,7 +197,8 @@ h1 {
     border-bottom: 1px dashed #333;
     color: #c0c0c0;
     animation: fadeIn 0.4s ease-out;
-    text-align: left; /* Alinhamento à esquerda para melhor leitura */
+    text-align: left;
+    /* Alinhamento à esquerda para melhor leitura */
 }
 
 /* REGRA QUE GARANTE O DESTAQUE */
@@ -250,24 +247,25 @@ h1 {
     align-items: center;
     margin-top: 12px;
     margin-bottom: 8px;
-    background-color: rgba(50, 50, 50, 0.5); /* Fundo sutil para o grupo */
+    background-color: rgba(50, 50, 50, 0.5);
+    /* Fundo sutil para o grupo */
     padding: 4px 8px;
     border-radius: 5px;
 }
 
 .status-icon {
-    width: 28px; /* Ícones um pouco maiores */
+    width: 28px;
     height: 28px;
     margin-right: 12px;
-    filter: drop-shadow(0 0 3px #000); /* Sombra nos ícones para destaque */
+    filter: drop-shadow(0 0 3px #000);
 }
 
 .status-bar {
     flex-grow: 1;
-    height: 18px; /* Barras um pouco mais altas */
+    height: 10px;
     background-color: #1a1a1a;
     border: 2px solid #555;
-    border-radius: 10px; /* Bordas mais arredondadas */
+    border-radius: 10px;
     overflow: hidden;
     margin-right: 10px;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
@@ -276,7 +274,7 @@ h1 {
 .bar-fill {
     height: 100%;
     transition: width 0.3s ease;
-    border-radius: 8px; /* Arredondamento dentro da barra */
+    border-radius: 8px;
 }
 
 .status-bar.hp .bar-fill {
@@ -319,7 +317,8 @@ h1 {
 .abilities-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px; /* Espaçamento maior */
+    gap: 15px;
+    /* Espaçamento maior */
     margin-top: 20px;
 }
 
@@ -327,9 +326,11 @@ h1 {
     position: absolute;
     bottom: 2px;
     right: 5px;
-    font-size: 0.7em; /* Menor */
+    font-size: 0.7em;
+    /* Menor */
     font-weight: 700;
-    color: #ffcc00; /* Destaque */
+    color: #ffcc00;
+    /* Destaque */
     background: rgba(0, 0, 0, 0.6);
     padding: 1px 4px;
     border-radius: 3px;
@@ -338,13 +339,13 @@ h1 {
 
 .abilities-grid button {
     padding: 10px;
-    background-color: #4CAF50; 
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 
@@ -355,13 +356,13 @@ h1 {
 }
 
 .abilities-grid button.maximum-ability {
-    background-color: #000000; 
+    background-color: #000000;
     border: 2px solid #c9c9c9;
-    order: -1; 
+    order: -1;
 }
 
 .abilities-grid button.heal-ability {
-    background-color: #90EE90; 
+    background-color: #90EE90;
     color: black;
     border: 2px solid #3CB371;
 }

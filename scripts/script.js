@@ -4,7 +4,8 @@ let player = null;
 let npc = null;
 let gameInterval = null;
 let playerInfinityDuration = 0; // Duração do Mugen se o Player for Gojo
-let npcInfinityDuration = 0;    // Duração do Mugen se o NPC for Gojo
+let npcInfinityDuration = 0;    // Duração do Mugen se o NPC for 
+
 
 // =========================================================================
 // FUNÇÕES GLOBAIS DE UTILIDADE
@@ -754,7 +755,7 @@ if (document.getElementById('game-container')) {
         if (player.name.includes('Satoru Gojo') && playerInfinityDuration > 0) {
             playerInfinityDuration = Math.max(0, playerInfinityDuration - 1);
             if (playerInfinityDuration === 0) {
-                logMessage(`Mugen (Player) expirou.`);
+                logMessage(`Mugen (Player) foi desativado.`);
             }
         }
 
@@ -762,7 +763,7 @@ if (document.getElementById('game-container')) {
         if (npc.name.includes('Satoru Gojo') && npcInfinityDuration > 0) {
             npcInfinityDuration = Math.max(0, npcInfinityDuration - 1);
             if (npcInfinityDuration === 0) {
-                logMessage(`Mugen (NPC) expirou.`);
+                logMessage(`Mugen (NPC) foi desativado.`);
             }
         }
         // =================================================================

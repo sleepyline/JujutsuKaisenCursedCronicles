@@ -9,7 +9,7 @@ const MAX_CE = 100;
 // --- TAXAS DE REGENERAÇÃO PERSONALIZADAS ---
 // (Mantidas inalteradas)
 const regenRates = {
-    satoru: { ce: 17.0, rev: 3.0 }, 
+    satoru: { ce: 17.0, rev: 9.0 }, 
     sukuna: { ce: 13.8, rev: 9.0 },
     yuta: { ce: 1.5, rev: 0.6 },
     geto: { ce: 1.2, rev: 0.2 },
