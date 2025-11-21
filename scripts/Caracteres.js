@@ -9,37 +9,38 @@ const MAX_CE = 100;
 // --- TAXAS DE REGENERAÇÃO PERSONALIZADAS ---
 // (Mantidas inalteradas)
 const regenRates = {
-    satoru: { ce: 17.0, rev: 9.0 }, 
-    sukuna: { ce: 13.8, rev: 9.0 },
-    yuta: { ce: 1.5, rev: 0.6 },
-    geto: { ce: 1.2, rev: 0.2 },
+    satoru: { ce: 100.0, rev: 6.0 },
+    sukuna: { ce: 13.8, rev: 16.0 },
+    yuta: { ce: 13.5, rev: 4.0 },
+
+    geto: { ce: 1.2, rev: 3 },
     mahito: { ce: 1.3, rev: 4.5 },
     choso: { ce: 1.0, rev: 2.5 },
     nanami: { ce: 0.8, rev: 0.1 },
-    itadori: { ce: 1.0, rev: 0.3 }, 
-    megumi: { ce: 0.9, rev: 0.1 },
-    nobara: { ce: 0.6, rev: 0.05 },
-    toji: { ce: 0.0, rev: 9.0 }
+    itadori: { ce: 1.0, rev: 2 },
+    megumi: { ce: 0.9, rev: 2 },
+    nobara: { ce: 0.6, rev: 2 },
+    toji: { ce: 0.0, rev: 10 }
 };
 
-
-// --- ESTATÍSTICAS E HABILIDADES DOS PERSONAGENS (UNIFICADAS) ---
-// IDs dos personagens: gojo -> satoru, yuji -> itadori, megumi -> megumi, etc.
 const characters = {
     // ID UNIFICADO: 'satoru'
     satoru: {
         name: "Satoru Gojo",
         subname: 'O Mais Forte', // ADICIONADO de escolha.js
         image: 'https://criticalhits.com.br/wp-content/uploads/2025/03/Gojo.jpg', // ADICIONADO de escolha.js
-        hp: MAX_HP * 2.5 , ce: MAX_CE, rev: 0,
+        hp: MAX_HP * 3.5, ce: MAX_CE, rev: 0,
         cooldowns: { domain: 0, red: 0, blue: 0, purple: 0, heal: 0 },
         abilities: {
-            domain: { name: "Vazio Ilimitado (Domínio)", cost: 80, cd: 30, baseDmg: 1500, type: 'domain_attack', },
+            domain: { name: "Vazio Ilimitado (Domínio)", cost: 100, cd: 40, baseDmg: 3000, type: 'domain_attack', },
             infinity: { name: "Mugen (Infinito)", cost: 15, cd: 10, baseDmg: 0, type: 'utility_buff', effect: 'Anula todos os ataques do oponente no próximo turno.', duration: 1 },
-            blue: { name: "Convergência (Azul)", cost: 30, cd: 3, baseDmg: 60, type: 'attack', },
-            red: { name: "Divergência (Vermelho)", cost: 30, cd: 4, baseDmg: 90, type: 'attack', },
-            purple: { name: "Fusão (Roxo)", cost: 60, cd: 8, baseDmg: 800, type: 'maximum_attack', },
-            heal: { name: "Técnica de Reversão", cost: 40, cd: 17, baseHeal: 350, type: 'heal', }
+
+            blue: { name: "Convergência (Azul)", cost: 40, cd: 4, baseDmg: 100, type: 'attack', },
+            red: { name: "Divergência (Vermelho)", cost: 40, cd: 5, baseDmg: 100, type: 'attack', },
+
+            purple: { name: "Fusão (Roxo)", cost: 60, cd: 15, baseDmg: 5000, type: 'maximum_attack', },
+
+            heal: { name: "Técnica de Reversão", cost: 40, cd: 17, baseHeal: 2200, type: 'heal', }
         }
     },
     // ID UNIFICADO: 'sukuna'
@@ -47,13 +48,16 @@ const characters = {
         name: "Ryomen Sukuna",
         subname: 'Rei das Maldições', // ADICIONADO
         image: 'https://tm.ibxk.com.br/2023/11/14/14093517191519.jpg?ims=1200x1200', // ADICIONADO
-        hp: MAX_HP * 4.5, ce: MAX_CE * 6.1, rev: 0,
+        hp: MAX_HP * 5.5, ce: MAX_CE * 4, rev: 0,
         cooldowns: { domain: 0, cleave: 0, dismantle: 0, fire: 0, heal: 0 },
         abilities: {
-            domain: { name: "Santuário Malevolente (Domínio)", cost: 90, cd: 30, baseDmg: 3000, type: 'domain_attack', effect: 'Cortar infinitamente tudo dentro do alcance' },
-            dismantle: { name: "Desmontar (Dismantle)", cost: 20, cd: 1, baseDmg: 50, type: 'attack', },
-            cleave: { name: "Fatiar (Cleave)", cost: 35, cd: 3, baseDmg: 100, type: 'attack', },
-            fire: { name: "Caixão de Chamas (Fugā)", cost: 70, cd: 15, baseDmg: 250, type: 'maximum_attack', },
+            domain: { name: "Santuário Malevolente (Domínio)", cost: 100, cd: 40, baseDmg: 3000, type: 'domain_attack', effect: 'Cortar infinitamente tudo dentro do alcance' },
+
+            dismantle: { name: "Desmontar (Dismantle)", cost: 50, cd: 3, baseDmg: 100, type: 'attack', },
+            cleave: { name: "Fatiar (Cleave)", cost: 5040, cd: 5, baseDmg: 100, type: 'attack', },
+
+            fire: { name: "Caixão de Chamas (Fugā)", cost: 70, cd: 15, baseDmg: 5000, type: 'maximum_attack', },
+
             heal: { name: "Técnica de Reversão", cost: 45, cd: 15, baseHeal: 2200, type: 'heal', }
         }
     },
@@ -62,12 +66,12 @@ const characters = {
         name: "Yuji Itadori",
         subname: 'Vaso de Sukuna', // ADICIONADO
         image: 'https://criticalhits.com.br/wp-content/uploads/2021/06/Yuji.jpg', // ADICIONADO
-        hp: MAX_HP, ce: MAX_CE, rev: 0,
+        hp: MAX_HP * 2, ce: MAX_CE, rev: 0,
         cooldowns: { divergent: 0, blackflash: 0, punch: 0 },
         abilities: {
             punch: { name: "Ataque Contundente", cost: 10, cd: 0, baseDmg: 30, type: 'attack' },
             divergent: { name: "Punho Divergente", cost: 25, cd: 2, baseDmg: 120, type: 'attack', effect: 'Dano secundário atrasado após o primeiro golpe.' },
-            blackflash: { name: "Clarão Negro", cost: 50, cd: 3, baseDmg: 500, type: 'attack', effect: 'Multiplica o dano em 2.5. Aumenta o domínio de Energia Amaldiçoada por um breve período.' }
+            blackflash: { name: "Black Flash", cost: 50, cd: 3, baseDmg: 500, type: 'attack', effect: 'Multiplica o dano em 2.5. Aumenta o domínio de Energia Amaldiçoada por um breve período.' }
         }
     },
     // ID UNIFICADO: 'megumi'
@@ -75,11 +79,12 @@ const characters = {
         name: "Megumi Fushiguro",
         subname: 'Técnica das Dez Sombras', // ADICIONADO
         image: 'https://static.beebom.com/wp-content/uploads/2025/10/jujutsu-kaisen-megumi-fushiguro.jpg?w=1168&quality=75', // ADICIONADO
-        hp: MAX_HP, ce: MAX_CE, rev: 0,
+        hp: MAX_HP * 2, ce: MAX_CE * 2, rev: 0,
         cooldowns: { domain: 0, nue: 0, maxEleph: 0, dogs: 0 },
         abilities: {
-            domain: { name: "Jardim das Sombras Chimera", cost: 80, cd: 15, baseDmg: 900, type: 'attack', effect: 'Cria uma camada de sombra, permitindo múltiplos shikigami e teletransporte.' },
-            nue: { name: "Nue (Pássaro)", cost: 30, cd: 3, baseDmg: 70, type: 'attack', effect: 'Ataque aéreo ou elétrico.' },
+            domain: { name: "Jardim das Sombras Chimera", cost: 80, cd: 15, baseDmg: 2000, type: 'attack', effect: 'Cria uma camada de sombra, permitindo múltiplos shikigami e teletransporte.' },
+            mahoraga: { name: "General Mahoraga", cost: 100, cd: 40, baseDmg: 3000, type: 'domain_attack', },
+            nue: { name: "Nue (Pássaro)", cost: 30, cd: 3, baseDmg: 100, type: 'attack', effect: 'Ataque aéreo ou elétrico.' },
             maxEleph: { name: "Elefante Máximo", cost: 45, cd: 5, baseDmg: 100, type: 'attack', effect: 'Ataque de pressão/água pesada e lenta.' }
         }
     },
@@ -101,7 +106,7 @@ const characters = {
         name: "Yuta Okkotsu",
         subname: 'Feiticeiro de Grau Especial', // ADICIONADO
         image: 'https://ovicio.com.br/wp-content/uploads/2023/12/20231229-jujutsu-kaisen-yuta.jpg', // ADICIONADO
-        hp: MAX_HP * 1.5, ce: MAX_CE * 2, rev: 0,
+        hp: MAX_HP * 1.9, ce: MAX_CE * 2, rev: 0,
         cooldowns: { domain: 0, copy: 0, ring: 0, heal: 0 },
         abilities: {
             domain: { name: "Autêntica Mutação Mútua", cost: 90, cd: 70, baseDmg: 900, type: 'attack', },
@@ -118,8 +123,8 @@ const characters = {
         hp: MAX_HP, ce: MAX_CE * 1.2, rev: 0,
         cooldowns: { max: 0, uzumaki: 0, fly: 0 },
         abilities: {
-            uzumaki: { name: "Uzumaki (Vórtice)", cost: 80, cd: 10, baseDmg: 300, type: 'attack', effect: 'Combina maldições capturadas em um ataque maciço e concentrado.' },
-            max: { name: "Técnica Máxima: Arco-íris", cost: 40, cd: 5, baseDmg: 120, type: 'attack', effect: 'Invoca uma grande quantidade de maldições para atacar simultaneamente.' },
+            uzumaki: { name: "Uzumaki (Vórtice)", cost: 80, cd: 10, baseDmg: 1000, type: 'maximum_attack', effect: 'Combina maldições capturadas em um ataque maciço e concentrado.' },
+            max: { name: "Arco-íris", cost: 40, cd: 5, baseDmg: 120, type: 'attack', effect: 'Invoca uma grande quantidade de maldições para atacar simultaneamente.' },
             fly: { name: "Maldição Voadora", cost: 20, cd: 1, baseDmg: 50, type: 'utility', effect: 'Invoca uma maldição para transporte ou ataque aéreo rápido.' }
         }
     },
@@ -154,14 +159,16 @@ const characters = {
         name: "Toji Fushiguro",
         subname: 'A Ameaça Ninja', // ADICIONADO
         image: 'https://preview.redd.it/toji-fushiguro-the-one-character-unaffected-by-this-ending-v0-u5nwh1b4p5rd1.jpeg?width=640&crop=smart&auto=webp&s=fd078aa4baeb1344a962e9b72e834af9cd0d1287', // ADICIONADO
-        hp: MAX_HP * 1.8, ce: 0, rev: 0,
+        hp: MAX_HP * 2, ce: 0, rev: 0,
         cooldowns: { inventory: 0, chain: 0, sword: 0 },
         abilities: {
-            sword: { name: "Lâmina da Nuvem Invertida", cost: 0, cd: 2, baseDmg: 250, type: 'attack', effect: 'Ignora e nega a técnica do alvo momentaneamente.' },
-            chain: { name: "Corrente da Alma", cost: 0, cd: 3, baseDmg: 80, type: 'attack', effect: 'Ataque de longo alcance que ignora barreiras comuns.' },
-            inventory: { name: "Invocação de Maldição", cost: 0, cd: 5, baseDmg: 0, type: 'utility', effect: 'Recupera arma amaldiçoada (Ex: Lança da Nuvem Invertida).' }
+            muchak: { name: "Nuvem Lúdica", cost: 0, cd: 5, baseDmg: 900, type: 'attack', effect: 'Ignora e nega a técnica do alvo momentaneamente.' },
+            sword: { name: "Lâmina Invertida do Céu", cost: 0, cd: 10, baseDmg: 2000, type: 'attack', effect: 'Ignora e nega a técnica do alvo momentaneamente.' },
+            chain: { name: "Corrente da Alma", cost: 0, cd: 5, baseDmg: 200, type: 'attack', effect: 'Ataque de longo alcance que ignora barreiras comuns.' },
+            glock: { name: "Glock", cost: 0, cd: 2, baseDmg: 100, type: 'attack', effect: 'Ataque de longo alcance que ignora barreiras comuns.' }
         }
     },
+
     // ID UNIFICADO: 'mahito'
     mahito: {
         name: "Mahito",

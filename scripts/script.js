@@ -433,10 +433,7 @@ if (document.getElementById('game-container')) {
             let displayDuration = (key === 'infinity') ? ' (3T)' : '';
 
 
-            button.innerHTML = `
-                ${ability.name}${displayDuration} 
-                <span class="ability-cost">${displayCost.toFixed(1)} ${resourceUnit}</span>
-            `;
+            button.innerHTML = `${ability.name}${displayDuration} | ${displayCost.toFixed(1)} ${resourceUnit}`;
 
             if (ability.type.startsWith('domain')) {
                 button.classList.add('domain-ability');
@@ -557,14 +554,24 @@ if (document.getElementById('game-container')) {
 
         // 5. LÓGICA DE DANO/HEAL
         if (isHeal) {
-            const recoveredHP = ability.baseHeal;
+            const recoveredHP = attacker.max_hp * 0.5;
             attacker.hp = Math.min(attacker.max_hp, attacker.hp + recoveredHP);
             outcomeMessage += `\nCom sucesso, curando **${recoveredHP.toFixed(0)}** de vida.`;
-        } else if (ability.baseDmg > 0) { // Ataque de dano
-            const { finalDmg, message } = calculateDamage(ability.baseDmg, defender);
+        }
+        else if (ability.baseDmg > 0) {
+
+            let effectiveBaseDmg = ability.baseDmg;
+            const SURVIVAL_BUFFER = 10;
+
+            if (ability.type === 'domain_attack') {
+                effectiveBaseDmg = Math.max(0, defender.hp - SURVIVAL_BUFFER);
+            }
+
+            const { finalDmg, message } = calculateDamage(effectiveBaseDmg, defender);
             defender.hp = Math.max(0, defender.hp - finalDmg);
             outcomeMessage += `\n${message} Infligindo **${finalDmg.toFixed(0)}** de dano.`;
-        } else if (isUtility) { // Outras utilidades sem dano
+        }
+        else if (isUtility) { // Outras utilidades sem dano
             outcomeMessage += `\nUsando utilidade: ${ability.effect}`;
         }
 
